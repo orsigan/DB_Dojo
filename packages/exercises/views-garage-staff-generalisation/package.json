@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-views-garage-staff-generalisation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: a union view forming the generalisation in the Hausklassenmodell.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

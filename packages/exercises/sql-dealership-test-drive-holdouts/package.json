@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-sql-dealership-test-drive-holdouts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: customers who never test-drove a model, NOT IN vs NOT EXISTS with NULLs (SQL, subqueries).",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

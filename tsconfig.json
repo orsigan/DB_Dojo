@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "types": []
+  },
+  "include": [
+    "packages/core/src/**/*.ts",
+    "packages/infrastructure/src/**/*.ts",
+    "packages/exercise-kit/src/**/*.ts",
+    "packages/exercise-kit/src/**/*.tsx",
+    "packages/exercises/*/src/**/*.ts",
+    "packages/exercises/*/src/**/*.tsx",
+    "apps/web/src/**/*.ts",
+    "apps/web/src/**/*.tsx"
+  ],
+  "exclude": ["**/node_modules", "**/dist", "apps/server"]
+}

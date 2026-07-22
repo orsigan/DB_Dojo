@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-sql-brewery-beer-styles",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: distinct beer styles still in production (SQL, projection and DISTINCT).",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

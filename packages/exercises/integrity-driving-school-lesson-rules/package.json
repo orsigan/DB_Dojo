@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-integrity-driving-school-lesson-rules",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: express four lesson rules as declarative constraints.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-ddl-workshop-repair-order-constraints",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: guard a workshop repair order table with NOT NULL, DEFAULT and CHECK.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

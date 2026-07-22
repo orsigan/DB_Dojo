@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-permissions-lawfirm-self-service-timesheet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: self-service view filtered by CURRENT_USER, GRANT SELECT/INSERT to PUBLIC (DCL, views, GRANT).",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

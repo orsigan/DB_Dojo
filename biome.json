@@ -1,0 +1,62 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": {
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/dev-dist",
+      "!**/node_modules",
+      "!**/*.webmanifest",
+      "!**/*.svg"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "none",
+      "semicolons": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        "useLiteralKeys": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/packages/core/**/*.ts"],
+      "linter": {
+        "rules": {
+          "nursery": {},
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "react": "Core must stay framework-free (dependency rule of the hexagonal architecture).",
+                  "react-dom": "Core must stay framework-free (dependency rule).",
+                  "zustand": "Core must stay framework-free (dependency rule).",
+                  "@db-dojo/infrastructure": "Core must not depend on infrastructure (dependency rule).",
+                  "@electric-sql/pglite": "Core must not depend on infrastructure/WASM (dependency rule)."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

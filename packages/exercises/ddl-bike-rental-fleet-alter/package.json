@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-ddl-bike-rental-fleet-alter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: extend and slim down a bike rental table with ALTER TABLE.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

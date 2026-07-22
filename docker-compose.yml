@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dojo
+      POSTGRES_PASSWORD: dojo
+      POSTGRES_DB: db_dojo
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_dojo_postgres:/var/lib/postgresql/data
+
+volumes:
+  db_dojo_postgres:

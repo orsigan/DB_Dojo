@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-sql-marathon-top-finishers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: top three marathon finishers (SQL, order by and limit).",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

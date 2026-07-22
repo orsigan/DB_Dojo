@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-ddl-create-library-book-table",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: create a typed library book table with CREATE TABLE.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}

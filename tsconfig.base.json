@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "exactOptionalPropertyTypes": true,
+
+    "skipLibCheck": true,
+    "noEmit": true,
+
+    "paths": {
+      "@db-dojo/core": ["./packages/core/src/index.ts"],
+      "@db-dojo/core/*": ["./packages/core/src/*"],
+      "@db-dojo/infrastructure": ["./packages/infrastructure/src/index.ts"],
+      "@db-dojo/infrastructure/*": ["./packages/infrastructure/src/*"],
+      "@db-dojo/exercise-kit": ["./packages/exercise-kit/src/index.ts"],
+      "@db-dojo/exercise-kit/*": ["./packages/exercise-kit/src/*"],
+      "@db-dojo/exercises": ["./packages/exercises/src/index.ts"],
+      "@db-dojo/exercises/*": ["./packages/exercises/src/*"]
+    }
+  }
+}

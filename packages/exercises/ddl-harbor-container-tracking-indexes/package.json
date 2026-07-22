@@ -1,0 +1,19 @@
+{
+  "name": "@db-dojo/exercise-ddl-harbor-container-tracking-indexes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: add a multi-column index and a unique index to a filled harbor container-tracking table.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  }
+}
