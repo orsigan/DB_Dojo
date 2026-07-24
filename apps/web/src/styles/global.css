@@ -589,6 +589,8 @@ button.crumb-link:focus-visible {
 
 .history-page {
   max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -673,17 +675,12 @@ button.crumb-link:focus-visible {
   overflow: auto;
 }
 
-.app-content:has(.exercise-workspace.window-grown) {
-  overflow: visible;
-}
-
 .exercise {
   display: flex;
   flex-direction: column;
   gap: 16px;
   max-width: 900px;
 }
-
 
 .exercise-workspace {
   flex: 1;
@@ -745,15 +742,6 @@ button.crumb-link:focus-visible {
 
 .exercise-workspace-stacked .workspace-window-slot-right {
   min-height: 60vh;
-}
-
-.window-grown .workspace-window-slot-top-left,
-.window-grown .workspace-window-slot-bottom-left {
-  max-height: none;
-}
-
-.exercise-workspace-stacked.window-grown {
-  overflow: visible;
 }
 
 .workspace-window-bar {
@@ -2383,9 +2371,8 @@ button.ghost:disabled {
 
 .guided-map-viewport {
   position: relative;
-  overflow: hidden;
   width: 100%;
-  flex: 1;
+  flex-shrink: 0;
   min-height: 360px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -2396,16 +2383,11 @@ button.ghost:disabled {
     radial-gradient(circle at 30% 85%, rgba(56, 189, 248, 0.1), transparent 45%),
     radial-gradient(var(--border) 1px, transparent 1.4px);
   background-size:
-    auto,
-    auto,
-    auto,
+    100% 100%,
+    100% 100%,
+    100% 100%,
     28px 28px;
-  cursor: grab;
-  touch-action: none;
-}
-
-.guided-map-viewport.dragging {
-  cursor: grabbing;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
 }
 
 .guided-map {
@@ -2552,16 +2534,20 @@ button.ghost:disabled {
 }
 
 .guided-map-zoom {
-  position: absolute;
-  right: 16px;
+  position: sticky;
   bottom: 16px;
   z-index: 5;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 6px;
+  width: 100%;
+  padding-right: 16px;
+  pointer-events: none;
 }
 
 .guided-map-zoom button {
+  pointer-events: auto;
   display: grid;
   place-items: center;
   width: 36px;
@@ -3414,6 +3400,8 @@ button.ghost:disabled {
 
 .settings {
   max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;

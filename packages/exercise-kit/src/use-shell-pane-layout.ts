@@ -2,7 +2,7 @@ import type { Exercise } from '@db-dojo/core';
 import { useEffect, useState } from 'react';
 
 export const DEFAULT_SHELL_PANE_LEFT_WIDTH = 480;
-export const MIN_SHELL_PANE_WIDTH = 240;
+export const MIN_SHELL_PANE_WIDTH = 160;
 export const MAX_SHELL_PANE_WIDTH = 900;
 
 interface StoredShellPaneLayout {

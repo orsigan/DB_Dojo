@@ -259,7 +259,9 @@ function SchemaTableCard({
           <span className={collapsed ? 'schema-table-chevron' : 'schema-table-chevron open'}>
             ›
           </span>
-          <span className="schema-table-name">{table.name}</span>
+          <span className="schema-table-name" title={table.name}>
+            {table.name}
+          </span>
           <span className="muted">{table.columns.length}</span>
         </button>
       </div>
@@ -277,6 +279,7 @@ function SchemaTableCard({
                 </span>
                 <span
                   className={column.isPrimaryKey ? 'schema-column-name pk' : 'schema-column-name'}
+                  title={column.name}
                 >
                   {column.name}
                 </span>

@@ -6,11 +6,11 @@ export type WorkspaceSlotKey = 'topLeft' | 'bottomLeft' | 'right';
 export type WorkspaceSlots = Record<WorkspaceSlotKey, WorkspaceWindowId>;
 
 export const DEFAULT_LEFT_COLUMN_WIDTH = 380;
-export const MIN_LEFT_COLUMN_WIDTH = 260;
+export const MIN_LEFT_COLUMN_WIDTH = 160;
 export const MAX_LEFT_COLUMN_WIDTH = 640;
 
 export const DEFAULT_TOP_LEFT_ROW_HEIGHT = 240;
-export const MIN_TOP_LEFT_ROW_HEIGHT = 100;
+export const MIN_TOP_LEFT_ROW_HEIGHT = 48;
 export const MAX_TOP_LEFT_ROW_HEIGHT = 600;
 
 const DEFAULT_SLOTS: WorkspaceSlots = { topLeft: 'prompt', bottomLeft: 'schema', right: 'shell' };

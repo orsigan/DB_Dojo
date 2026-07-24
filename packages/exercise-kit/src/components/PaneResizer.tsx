@@ -4,6 +4,7 @@ export function PaneResizer({
   axis,
   value,
   onChange,
+  onDragEnd,
   min,
   max,
   label,
@@ -12,6 +13,7 @@ export function PaneResizer({
   axis: 'horizontal' | 'vertical';
   value: number;
   onChange: (next: number) => void;
+  onDragEnd?: ((finalValue: number) => void) | undefined;
   min: number;
   max: number;
   label: string;
@@ -21,6 +23,7 @@ export function PaneResizer({
     axis,
     value,
     onChange,
+    onDragEnd,
     min,
     max
   });

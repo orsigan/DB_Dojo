@@ -1,10 +1,9 @@
 import type { ExerciseId, ExerciseProgress } from '@db-dojo/core';
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { chapterProgress } from '../app/chapter-tree';
 import type { Chapter } from '../app/curriculum';
 import { useTranslation } from '../app/i18n/use-translation';
 import { ChapterIcon, FlagIcon } from './chapter-icons';
-import { usePanZoom } from './graph/use-pan-zoom';
 
 const MILESTONE_GAP_Y = 190;
 const SUB_GAP_Y = 130;
@@ -93,12 +92,12 @@ function nodePositions(nodes: MapNode[], mapWidth: number): { x: number; y: numb
   });
 }
 
-function segmentClass(from: ChapterStatus, to: ChapterStatus): 'walked' | 'current' | 'pending' {
+function segmentClass(to: ChapterStatus): 'walked' | 'current' | 'pending' {
+  if (to === 'completed') {
+    return 'walked';
+  }
   if (to === 'current') {
     return 'current';
-  }
-  if (from === 'completed' && to === 'completed') {
-    return 'walked';
   }
   return 'pending';
 }
@@ -113,9 +112,16 @@ export function GuidedMap({
   onOpen: (chapterId: string) => void;
 }) {
   const { t } = useTranslation();
-  const panZoom = usePanZoom({ min: MIN_SCALE, max: MAX_SCALE, step: ZOOM_STEP });
+  const [scale, setScale] = useState(1);
   const [mapWidth, setMapWidth] = useState(FALLBACK_MAP_WIDTH);
-  const viewportRef = panZoom.viewportRef;
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  const clampScale = useCallback(
+    (value: number) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, value)),
+    []
+  );
+  const zoomIn = useCallback(() => setScale((prev) => clampScale(prev + ZOOM_STEP)), [clampScale]);
+  const zoomOut = useCallback(() => setScale((prev) => clampScale(prev - ZOOM_STEP)), [clampScale]);
 
   useLayoutEffect(() => {
     const element = viewportRef.current;
@@ -130,7 +136,7 @@ export function GuidedMap({
     });
     observer.observe(element);
     return () => observer.disconnect();
-  }, [viewportRef]);
+  }, []);
 
   const nodes = flattenMapNodes(chapters, perExercise);
   const positions = nodePositions(nodes, mapWidth);
@@ -138,17 +144,13 @@ export function GuidedMap({
   const mapHeight = (lastPosition?.y ?? MAP_TOP_PADDING) + MAP_TOP_PADDING;
 
   return (
-    <div
-      ref={viewportRef}
-      className={panZoom.dragging ? 'guided-map-viewport dragging' : 'guided-map-viewport'}
-      onPointerDown={panZoom.onPointerDown}
-    >
+    <div ref={viewportRef} className="guided-map-viewport">
       <div
         className="guided-map"
         style={{
           width: mapWidth,
-          height: mapHeight,
-          transform: `translate(${panZoom.pan.x}px, ${panZoom.pan.y}px) scale(${panZoom.scale})`,
+          height: mapHeight * scale,
+          transform: `scale(${scale})`,
           transformOrigin: 'top center'
         }}
       >
@@ -162,15 +164,14 @@ export function GuidedMap({
           {nodes.slice(1).map((node, i) => {
             const from = positions[i];
             const to = positions[i + 1];
-            const previous = nodes[i];
-            if (!from || !to || !previous) {
+            if (!from || !to) {
               return null;
             }
             return (
               <path
                 key={`edge-${node.chapter.id}`}
                 d={`M ${from.x} ${from.y} L ${to.x} ${to.y}`}
-                className={`guided-map-path ${segmentClass(previous.status, node.status)}`}
+                className={`guided-map-path ${segmentClass(node.status)}`}
               />
             );
           })}
@@ -208,11 +209,11 @@ export function GuidedMap({
         })}
       </div>
 
-      <div className="guided-map-zoom" onPointerDown={(event) => event.stopPropagation()}>
-        <button type="button" aria-label={t('guided.zoomIn')} onClick={panZoom.zoomIn}>
+      <div className="guided-map-zoom">
+        <button type="button" aria-label={t('guided.zoomIn')} onClick={zoomIn}>
           +
         </button>
-        <button type="button" aria-label={t('guided.zoomOut')} onClick={panZoom.zoomOut}>
+        <button type="button" aria-label={t('guided.zoomOut')} onClick={zoomOut}>
           −
         </button>
       </div>

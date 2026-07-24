@@ -1,6 +1,6 @@
 import type { Exercise, Language } from '@db-dojo/core';
 import { localize } from '@db-dojo/core';
-import { type CSSProperties, type ReactNode, useCallback, useState } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { HintList } from './components/HintList';
 import { PaneResizer } from './components/PaneResizer';
 import { SchemaPanel } from './components/SchemaPanel';
@@ -30,8 +30,6 @@ import {
 } from './use-workspace-layout';
 
 const COLLAPSED_WINDOW_SIZE = 40;
-
-type GrowableSlotKey = 'topLeft' | 'bottomLeft';
 
 const SLOT_CLASS_NAMES = {
   topLeft: 'workspace-window-slot-top-left',
@@ -136,6 +134,13 @@ function ShellWindowContent({
             axis="horizontal"
             value={paneLayout.leftWidth}
             onChange={paneLayout.setLeftWidth}
+            onDragEnd={(finalWidth) => {
+              if (finalWidth <= MIN_SHELL_PANE_WIDTH) {
+                paneLayout.toggleCollapsed('left');
+              } else if (finalWidth >= MAX_SHELL_PANE_WIDTH) {
+                paneLayout.toggleCollapsed('right');
+              }
+            }}
             min={MIN_SHELL_PANE_WIDTH}
             max={MAX_SHELL_PANE_WIDTH}
             label={t('resizePanes', language)}
@@ -161,36 +166,6 @@ export function DefaultExerciseView({ exercise, host, language }: ExerciseViewPr
     tabs.selectPane('left', rightTabId);
     tabs.selectPane('right', leftTabId);
   });
-
-  const [grownHeights, setGrownHeights] = useState<Partial<Record<GrowableSlotKey, number>>>({});
-
-  const handleOverflow = useCallback((slot: GrowableSlotKey, neededHeight: number) => {
-    setGrownHeights((prev) => {
-      if ((prev[slot] ?? 0) >= neededHeight) {
-        return prev;
-      }
-      return { ...prev, [slot]: neededHeight };
-    });
-  }, []);
-
-  const growTopLeftHeight = grownHeights.topLeft;
-  const growBottomLeftHeight = grownHeights.bottomLeft;
-  const anyGrown = growTopLeftHeight !== undefined || growBottomLeftHeight !== undefined;
-
-  const handleTopLeftRowHeightChange = useCallback(
-    (height: number) => {
-      setGrownHeights((prev) => {
-        if (prev.topLeft === undefined) {
-          return prev;
-        }
-        const next = { ...prev };
-        delete next.topLeft;
-        return next;
-      });
-      layout.setTopLeftRowHeight(height);
-    },
-    [layout]
-  );
 
   const windowContent: Record<WorkspaceWindowId, ReactNode> = {
     prompt: (
@@ -229,22 +204,13 @@ export function DefaultExerciseView({ exercise, host, language }: ExerciseViewPr
         dragTargetHandlers={windowDrag.dragTargetHandlers(windowId)}
         dragging={windowDrag.draggedId === windowId}
         dragOver={windowDrag.dragOverId === windowId}
-        onOverflow={
-          slotKey === 'topLeft' || slotKey === 'bottomLeft'
-            ? (neededHeight) => handleOverflow(slotKey, neededHeight)
-            : undefined
-        }
       >
         {windowContent[windowId]}
       </WorkspaceWindow>
     );
   });
 
-  const workspaceClassName = [
-    'exercise-workspace',
-    stacked && 'exercise-workspace-stacked',
-    anyGrown && 'window-grown'
-  ]
+  const workspaceClassName = ['exercise-workspace', stacked && 'exercise-workspace-stacked']
     .filter(Boolean)
     .join(' ');
 
@@ -268,16 +234,11 @@ export function DefaultExerciseView({ exercise, host, language }: ExerciseViewPr
   } else if (topLeftCollapsed) {
     gridTemplateRows = `${COLLAPSED_WINDOW_SIZE}px 12px 1fr`;
   } else {
-    const topTrack = growTopLeftHeight ? `${growTopLeftHeight}px` : `${layout.topLeftRowHeight}px`;
-    const bottomTrack = growBottomLeftHeight ? `${growBottomLeftHeight}px` : '1fr';
-    gridTemplateRows = `${topTrack} 12px ${bottomTrack}`;
+    gridTemplateRows = `${layout.topLeftRowHeight}px 12px 1fr`;
   }
 
   return (
-    <div
-      className={workspaceClassName}
-      style={{ gridTemplateColumns, gridTemplateRows, minHeight: anyGrown ? 'auto' : undefined }}
-    >
+    <div className={workspaceClassName} style={{ gridTemplateColumns, gridTemplateRows }}>
       {windows}
 
       {!rightCollapsed && (
@@ -285,6 +246,11 @@ export function DefaultExerciseView({ exercise, host, language }: ExerciseViewPr
           axis="horizontal"
           value={layout.leftColumnWidth}
           onChange={layout.setLeftColumnWidth}
+          onDragEnd={(finalWidth) => {
+            if (finalWidth >= MAX_LEFT_COLUMN_WIDTH) {
+              layout.toggleCollapsed(layout.slots.right);
+            }
+          }}
           min={MIN_LEFT_COLUMN_WIDTH}
           max={MAX_LEFT_COLUMN_WIDTH}
           label={t('resizeColumns', language)}
@@ -295,10 +261,17 @@ export function DefaultExerciseView({ exercise, host, language }: ExerciseViewPr
       {!topLeftCollapsed && !bottomLeftCollapsed && (
         <PaneResizer
           axis="vertical"
-          value={growTopLeftHeight ?? layout.topLeftRowHeight}
-          onChange={handleTopLeftRowHeightChange}
+          value={layout.topLeftRowHeight}
+          onChange={layout.setTopLeftRowHeight}
+          onDragEnd={(finalHeight) => {
+            if (finalHeight <= MIN_TOP_LEFT_ROW_HEIGHT) {
+              layout.toggleCollapsed(layout.slots.topLeft);
+            } else if (finalHeight >= MAX_TOP_LEFT_ROW_HEIGHT) {
+              layout.toggleCollapsed(layout.slots.bottomLeft);
+            }
+          }}
           min={MIN_TOP_LEFT_ROW_HEIGHT}
-          max={Math.max(MAX_TOP_LEFT_ROW_HEIGHT, growTopLeftHeight ?? 0)}
+          max={MAX_TOP_LEFT_ROW_HEIGHT}
           label={t('resizeRows', language)}
           className="workspace-row-resizer"
         />
