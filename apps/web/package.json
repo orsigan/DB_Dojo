@@ -12,9 +12,12 @@
   "dependencies": {
     "@db-dojo/core": "*",
     "@db-dojo/exercise-kit": "*",
+    "@db-dojo/exercise-normalization-orders-3nf": "*",
     "@db-dojo/exercise-permissions-analyst": "*",
     "@db-dojo/exercise-sql-login-streaks": "*",
     "@db-dojo/exercise-sql-orders": "*",
+    "@db-dojo/exercise-uml-library-class-diagram": "*",
+    "@db-dojo/exercise-uml-orders-relational-mapping": "*",
     "@db-dojo/infrastructure": "*",
     "@electric-sql/pglite": "^0.5.4",
     "react": "^19.2.7",

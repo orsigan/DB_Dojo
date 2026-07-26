@@ -73,7 +73,24 @@ export const topics: Record<string, TopicMeta> = {
     summary: 'Roles, GRANT & REVOKE.',
     requires: ['sql']
   },
-  'permissions/roles': { label: 'Role Hierarchies', order: 0 }
+  'permissions/roles': { label: 'Role Hierarchies', order: 0 },
+
+  modelling: {
+    label: 'Modelling',
+    order: 8,
+    summary: 'Draw UML diagrams, map them to tables and normalise them.'
+  },
+  'modelling/uml': { label: 'UML Class Diagrams', order: 0 },
+  'modelling/relational': {
+    label: 'Relational Model',
+    order: 1,
+    requires: ['modelling/uml']
+  },
+  'modelling/normalization': {
+    label: 'Normalization',
+    order: 2,
+    requires: ['modelling/relational']
+  }
 };
 
 export function topicKey(path: string[]): string {

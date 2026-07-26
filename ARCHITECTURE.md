@@ -128,6 +128,44 @@ siblings, or a short summary shown in the Library, add an entry to
 - `assertions` — runs the user's SQL, then a list of checks. Each check is SQL returning a single
   row `{ ok: boolean }`. Ideal for indexes (inspect `pg_indexes`), permissions
   (`has_table_privilege`), and PL/pgSQL (call the function and compare).
+- `diagram` — compares a drawn diagram against one or more accepted `DiagramSolution`s. No database
+  is involved; see below.
+
+## Diagram exercises
+
+A second kind of exercise asks the learner to *draw* instead of to type: UML class diagrams, their
+translation into the relational model, and normalization (functional dependencies plus the tables
+that come out of a decomposition). Nothing about the SQL exercises changes — a diagram exercise is
+an ordinary `Exercise` with an empty `seedSql`, `grading.kind: 'diagram'` and
+`View: DiagramExerciseView`.
+
+| Module                                        | Responsibility                                        |
+| --------------------------------------------- | ----------------------------------------------------- |
+| `core/domain/diagram.ts`                       | What a drawn diagram *is*: nodes, attributes, edges    |
+| `core/domain/diagram-solution.ts`              | What an author declares as a correct answer            |
+| `core/application/grade-diagram.ts`            | Pure comparison of the two, with localized feedback    |
+| `core/application/submit-diagram.ts`           | Records the attempt, mirrors `submitSolution`          |
+| `exercise-kit/diagram/diagram-geometry.ts`     | Pure geometry: node sizes, anchors, edge polylines     |
+| `exercise-kit/diagram/use-diagram-editor.ts`   | Editor state: selection, armed tool, undo, persistence |
+| `exercise-kit/diagram/DiagramCanvas.tsx`       | The whiteboard: placing, connecting, dragging, panning |
+
+The editor never places anything on a hunch: a palette tool declares *where* it may land
+(`canvas`, `edge`, `nodes`, `attributes`), and `dropTargetAt()` decides per pointer position
+whether that spot is valid — an association class, for example, is only droppable onto an
+association, aggregation or composition that does not already carry one. Hit testing is
+geometric, not DOM-based (`distanceToPolyline`), so the same code drives the drop preview, edge
+selection and the highlight under the cursor.
+
+`gradeDiagram()` matches by *name*, never by position, so the same answer passes wherever it was
+drawn. Names are compared case-insensitively and ignoring `_`/`-`, and every solution node and
+attribute may declare `aliases` — that is how one exercise accepts both its German and its English
+identifiers. An exercise may list several `solutions`; the learner sees the feedback of whichever
+variant they came closest to.
+
+Exercises configure the editor through props rather than through the domain type: `toolset` limits
+the palette (`uml`, `relational`, `normalization`) and `starterDiagram` pre-places elements — a
+normalization task hands over the raw table so the learner can draw the dependencies straight into
+it.
 
 ## How navigation modes work
 

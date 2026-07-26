@@ -16,6 +16,10 @@ const MESSAGES = {
   referenceQueryFailed: {
     de: 'Die Referenzabfrage konnte nicht ausgewertet werden.',
     en: 'Could not evaluate the reference query.'
+  },
+  diagramNotGradedBySql: {
+    de: 'Diese Aufgabe wird über das gezeichnete Diagramm bewertet, nicht über SQL.',
+    en: 'This exercise is graded from the drawn diagram, not from SQL.'
   }
 } satisfies Record<string, LocalizedText>;
 
@@ -29,6 +33,10 @@ export async function gradeSubmission(
 
   if (grading.kind === 'result-equals') {
     return gradeByResult(engine, grading, userSql, language);
+  }
+
+  if (grading.kind === 'diagram') {
+    return { passed: false, feedback: [localize(MESSAGES.diagramNotGradedBySql, language)] };
   }
 
   return gradeByAssertions(engine, grading, userSql, language);

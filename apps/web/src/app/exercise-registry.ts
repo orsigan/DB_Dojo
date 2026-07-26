@@ -32,6 +32,7 @@ import integrityRoasteryBatchLimits from '@db-dojo/exercise-integrity-roastery-b
 import integrityShelterAdoptionAudit from '@db-dojo/exercise-integrity-shelter-adoption-audit';
 import integritySubstationStatusLog from '@db-dojo/exercise-integrity-substation-status-log';
 import type { ExerciseModule } from '@db-dojo/exercise-kit';
+import normalizationOrders3nf from '@db-dojo/exercise-normalization-orders-3nf';
 import permissionsAnalyst from '@db-dojo/exercise-permissions-analyst';
 import permissionsColumnLevelPersonnel from '@db-dojo/exercise-permissions-column-level-personnel';
 import permissionsDefaultPrivilegesAnalytics from '@db-dojo/exercise-permissions-default-privileges-analytics';
@@ -71,6 +72,8 @@ import sqlMuseumGuideLanguagePairs from '@db-dojo/exercise-sql-museum-guide-lang
 import sqlOrders from '@db-dojo/exercise-sql-orders';
 import sqlVineyardBestLotPerRegion from '@db-dojo/exercise-sql-vineyard-best-lot-per-region';
 import sqlWorkshopRepairHours from '@db-dojo/exercise-sql-workshop-repair-hours';
+import umlLibraryClassDiagram from '@db-dojo/exercise-uml-library-class-diagram';
+import umlOrdersRelationalMapping from '@db-dojo/exercise-uml-orders-relational-mapping';
 import viewsAirportDepartureBoard from '@db-dojo/exercise-views-airport-departure-board';
 import viewsBreweryActiveBatches from '@db-dojo/exercise-views-brewery-active-batches';
 import viewsClinicWardOccupancy from '@db-dojo/exercise-views-clinic-ward-occupancy';
@@ -172,5 +175,9 @@ export const exerciseModules: ExerciseModule[] = [
   permissionsGrantOptionAuditChain,
   permissionsRoleHierarchySchool,
   permissionsLawfirmSelfServiceTimesheet,
-  permissionsDefaultPrivilegesAnalytics
+  permissionsDefaultPrivilegesAnalytics,
+
+  umlLibraryClassDiagram,
+  umlOrdersRelationalMapping,
+  normalizationOrders3nf
 ];

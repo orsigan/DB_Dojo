@@ -17,15 +17,19 @@ export function ExerciseHost({ module }: { module: ExerciseModule }) {
     let active = true;
     setReady(false);
 
+    // Diagram exercises never touch the database, so they skip the sandbox entirely.
     // pglite is an isolated in-browser database per tab, so a full reset between
     // exercises is safe — it stops tables from earlier exercises in this session
     // lingering in the schema view. The remote engine is one shared Postgres
     // instance with no per-user isolation, so resetting it on every navigation
     // would wipe other concurrent users' sandboxes; it keeps the additive seed.
+    const seedSql = module.definition.seedSql.trim();
     const prepare =
-      services.engine.kind === 'pglite'
-        ? services.engine.reset().then(() => services.engine.exec(module.definition.seedSql))
-        : services.engine.exec(module.definition.seedSql);
+      seedSql === ''
+        ? Promise.resolve()
+        : services.engine.kind === 'pglite'
+          ? services.engine.reset().then(() => services.engine.exec(seedSql))
+          : services.engine.exec(seedSql);
 
     prepare.then(() => {
       if (active) {

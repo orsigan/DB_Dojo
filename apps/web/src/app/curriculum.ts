@@ -103,7 +103,11 @@ export const curriculum: Chapter[] = [
         id: 'sql-uml-er-modeling',
         title: 'ER Modeling & UML',
         summary: 'Entities, relationships and translating diagrams into schemas.',
-        exerciseIds: [],
+        exerciseIds: [
+          'uml-library-class-diagram',
+          'uml-orders-relational-mapping',
+          'normalization-orders-3nf'
+        ],
         children: []
       }
     ]

@@ -20,5 +20,8 @@ export const conceptFilters: ConceptFilter[] = [
   { tag: 'create-view', label: 'View' },
   { tag: 'function', label: 'PL/pgSQL' },
   { tag: 'trigger', label: 'Trigger' },
-  { tag: 'grant', label: 'GRANT / Permissions' }
+  { tag: 'grant', label: 'GRANT / Permissions' },
+  { tag: 'uml', label: 'UML' },
+  { tag: 'relational-model', label: 'Relational Model' },
+  { tag: 'normalization', label: 'Normalization' }
 ];

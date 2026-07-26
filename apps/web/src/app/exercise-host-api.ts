@@ -3,6 +3,7 @@ import {
   introspectSchema,
   type Language,
   runSql,
+  submitDiagram,
   submitSolution
 } from '@db-dojo/core';
 import type { ExerciseHostApi } from '@db-dojo/exercise-kit';
@@ -16,6 +17,7 @@ export function createHostApi(
   return {
     runSql: (sql) => runSql(services, sql),
     submit: (sql) => submitSolution(services, exercise.id, sql, language),
+    submitDiagram: (diagram) => submitDiagram(services, exercise.id, diagram, language),
     reset: async () => {
       await services.engine.reset();
       await services.engine.exec(exercise.seedSql);

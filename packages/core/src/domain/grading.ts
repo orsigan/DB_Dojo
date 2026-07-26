@@ -1,6 +1,7 @@
+import type { DiagramSolution } from './diagram-solution';
 import type { LocalizedText } from './localized-text';
 
-export type GradingSpec = ResultEqualsSpec | AssertionsSpec;
+export type GradingSpec = ResultEqualsSpec | AssertionsSpec | DiagramSpec;
 
 export interface ResultEqualsSpec {
   kind: 'result-equals';
@@ -16,4 +17,9 @@ export interface AssertionsSpec {
 export interface AssertionCheck {
   label: LocalizedText;
   sql: string;
+}
+
+export interface DiagramSpec {
+  kind: 'diagram';
+  solutions: DiagramSolution[];
 }
