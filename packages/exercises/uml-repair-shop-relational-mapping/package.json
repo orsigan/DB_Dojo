@@ -1,0 +1,26 @@
+{
+  "name": "@db-dojo/exercise-uml-repair-shop-relational-mapping",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: translate a repair shop order class diagram, combining a 1:n and an m:n relationship, into the relational model.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7"
+  }
+}

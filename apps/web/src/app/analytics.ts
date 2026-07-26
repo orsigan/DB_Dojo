@@ -63,7 +63,6 @@ export function solvedTrend(attempts: Attempt[]): number[] {
   });
 }
 
-
 export function topicDistribution(
   byTopic: { key: string; totalExercises: number }[],
   t: ReturnType<typeof useTranslation>['t']

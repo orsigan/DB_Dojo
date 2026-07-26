@@ -170,7 +170,6 @@ function GraphNodeCard({
         width: positioned.width,
         minHeight: positioned.height
       }}
-
       onPointerDown={(event) => event.stopPropagation()}
     >
       <div className="graph-node-head">

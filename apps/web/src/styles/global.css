@@ -902,7 +902,7 @@ button.crumb-link:focus-visible {
 }
 
 .shell-tab-chip-close {
-  padding: 4px 6px !important;
+  padding: 4px 6px;
   border-radius: 6px;
   line-height: 1;
 }
@@ -965,11 +965,6 @@ button.crumb-link:focus-visible {
   border-radius: 999px;
   background: var(--surface-2);
   align-self: flex-start;
-}
-
-.shell-pane-selector .segmented-option {
-  padding: 4px 12px;
-  font-size: 12px;
 }
 
 .exercise-output {
@@ -2650,6 +2645,11 @@ button.ghost:disabled {
   background: var(--surface);
   color: var(--text);
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+}
+
+.shell-pane-selector .segmented-option {
+  padding: 4px 12px;
+  font-size: 12px;
 }
 
 /* --- filters ---------------------------------------------------------- */

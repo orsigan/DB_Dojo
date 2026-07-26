@@ -32,7 +32,19 @@ import integrityRoasteryBatchLimits from '@db-dojo/exercise-integrity-roastery-b
 import integrityShelterAdoptionAudit from '@db-dojo/exercise-integrity-shelter-adoption-audit';
 import integritySubstationStatusLog from '@db-dojo/exercise-integrity-substation-status-log';
 import type { ExerciseModule } from '@db-dojo/exercise-kit';
+import normalizationCarpoolRide2nf from '@db-dojo/exercise-normalization-carpool-ride-2nf';
+import normalizationCarworkshopInvoice3nf from '@db-dojo/exercise-normalization-carworkshop-invoice-3nf';
+import normalizationClassifiedsContact1nf from '@db-dojo/exercise-normalization-classifieds-contact-1nf';
+import normalizationClinicMedication3nf from '@db-dojo/exercise-normalization-clinic-medication-3nf';
+import normalizationConsultingAssignment2nf from '@db-dojo/exercise-normalization-consulting-assignment-2nf';
+import normalizationCourseSignup1nf from '@db-dojo/exercise-normalization-course-signup-1nf';
+import normalizationFestivalLineup3nf from '@db-dojo/exercise-normalization-festival-lineup-3nf';
+import normalizationHotelBooking3nf from '@db-dojo/exercise-normalization-hotel-booking-3nf';
 import normalizationOrders3nf from '@db-dojo/exercise-normalization-orders-3nf';
+import normalizationRealestateListing3nf from '@db-dojo/exercise-normalization-realestate-listing-3nf';
+import normalizationSchoolResults3nf from '@db-dojo/exercise-normalization-school-results-3nf';
+import normalizationWarehouseStock2nf from '@db-dojo/exercise-normalization-warehouse-stock-2nf';
+import normalizationWorkshopTools1nf from '@db-dojo/exercise-normalization-workshop-tools-1nf';
 import permissionsAnalyst from '@db-dojo/exercise-permissions-analyst';
 import permissionsColumnLevelPersonnel from '@db-dojo/exercise-permissions-column-level-personnel';
 import permissionsDefaultPrivilegesAnalytics from '@db-dojo/exercise-permissions-default-privileges-analytics';
@@ -72,8 +84,36 @@ import sqlMuseumGuideLanguagePairs from '@db-dojo/exercise-sql-museum-guide-lang
 import sqlOrders from '@db-dojo/exercise-sql-orders';
 import sqlVineyardBestLotPerRegion from '@db-dojo/exercise-sql-vineyard-best-lot-per-region';
 import sqlWorkshopRepairHours from '@db-dojo/exercise-sql-workshop-repair-hours';
+import umlAirlineBookingAssociationClass from '@db-dojo/exercise-uml-airline-booking-association-class';
+import umlCarRentalFleetRelationalMapping from '@db-dojo/exercise-uml-car-rental-fleet-relational-mapping';
+import umlCinemaRelationalMapping from '@db-dojo/exercise-uml-cinema-relational-mapping';
+import umlCinemaScreeningRelationalMapping from '@db-dojo/exercise-uml-cinema-screening-relational-mapping';
+import umlClinicIsolationRoom from '@db-dojo/exercise-uml-clinic-isolation-room';
+import umlCompanyHierarchyRelationalMapping from '@db-dojo/exercise-uml-company-hierarchy-relational-mapping';
+import umlConferenceRelationalMapping from '@db-dojo/exercise-uml-conference-relational-mapping';
+import umlDepartmentProjectStaffing from '@db-dojo/exercise-uml-department-project-staffing';
+import umlEsportsTournamentModel from '@db-dojo/exercise-uml-esports-tournament-model';
+import umlFleetVehicleGeneralization from '@db-dojo/exercise-uml-fleet-vehicle-generalization';
+import umlHospitalFullCareModel from '@db-dojo/exercise-uml-hospital-full-care-model';
+import umlHospitalStaffModel from '@db-dojo/exercise-uml-hospital-staff-model';
+import umlHospitalStaffRelationalMapping from '@db-dojo/exercise-uml-hospital-staff-relational-mapping';
+import umlHotelRooms from '@db-dojo/exercise-uml-hotel-rooms';
+import umlInsurancePolicyModel from '@db-dojo/exercise-uml-insurance-policy-model';
 import umlLibraryClassDiagram from '@db-dojo/exercise-uml-library-class-diagram';
+import umlLogisticsTransportRelationalMapping from '@db-dojo/exercise-uml-logistics-transport-relational-mapping';
+import umlMediaLibraryGeneralization from '@db-dojo/exercise-uml-media-library-generalization';
 import umlOrdersRelationalMapping from '@db-dojo/exercise-uml-orders-relational-mapping';
+import umlPersonPassport from '@db-dojo/exercise-uml-person-passport';
+import umlRepairShopRelationalMapping from '@db-dojo/exercise-uml-repair-shop-relational-mapping';
+import umlRestaurantOrderCompositionChain from '@db-dojo/exercise-uml-restaurant-order-composition-chain';
+import umlSchoolRelationalMapping from '@db-dojo/exercise-uml-school-relational-mapping';
+import umlSportsTeamPlayers from '@db-dojo/exercise-uml-sports-team-players';
+import umlStreamingPlatformRelationalMapping from '@db-dojo/exercise-uml-streaming-platform-relational-mapping';
+import umlSupplyChainRelationalMapping from '@db-dojo/exercise-uml-supply-chain-relational-mapping';
+import umlUniversityCoursePrerequisites from '@db-dojo/exercise-uml-university-course-prerequisites';
+import umlUniversityStudentCourse from '@db-dojo/exercise-uml-university-student-course';
+import umlVetClinicRelationalMapping from '@db-dojo/exercise-uml-vet-clinic-relational-mapping';
+import umlZooKeeperAnimals from '@db-dojo/exercise-uml-zoo-keeper-animals';
 import viewsAirportDepartureBoard from '@db-dojo/exercise-views-airport-departure-board';
 import viewsBreweryActiveBatches from '@db-dojo/exercise-views-brewery-active-batches';
 import viewsClinicWardOccupancy from '@db-dojo/exercise-views-clinic-ward-occupancy';
@@ -179,5 +219,49 @@ export const exerciseModules: ExerciseModule[] = [
 
   umlLibraryClassDiagram,
   umlOrdersRelationalMapping,
-  normalizationOrders3nf
+  normalizationOrders3nf,
+
+  umlZooKeeperAnimals,
+  umlHotelRooms,
+  umlSportsTeamPlayers,
+  umlPersonPassport,
+  umlCinemaRelationalMapping,
+  umlVetClinicRelationalMapping,
+  umlSchoolRelationalMapping,
+  normalizationCourseSignup1nf,
+  normalizationClassifiedsContact1nf,
+  normalizationWorkshopTools1nf,
+
+  umlFleetVehicleGeneralization,
+  umlUniversityStudentCourse,
+  umlRestaurantOrderCompositionChain,
+  umlClinicIsolationRoom,
+  umlConferenceRelationalMapping,
+  umlCompanyHierarchyRelationalMapping,
+  umlRepairShopRelationalMapping,
+  normalizationWarehouseStock2nf,
+  normalizationConsultingAssignment2nf,
+  normalizationCarpoolRide2nf,
+
+  umlDepartmentProjectStaffing,
+  umlHospitalStaffModel,
+  umlAirlineBookingAssociationClass,
+  umlMediaLibraryGeneralization,
+  umlCinemaScreeningRelationalMapping,
+  umlCarRentalFleetRelationalMapping,
+  umlSupplyChainRelationalMapping,
+  normalizationClinicMedication3nf,
+  normalizationRealestateListing3nf,
+  normalizationFestivalLineup3nf,
+
+  umlHospitalFullCareModel,
+  umlUniversityCoursePrerequisites,
+  umlInsurancePolicyModel,
+  umlEsportsTournamentModel,
+  umlHospitalStaffRelationalMapping,
+  umlLogisticsTransportRelationalMapping,
+  umlStreamingPlatformRelationalMapping,
+  normalizationHotelBooking3nf,
+  normalizationCarworkshopInvoice3nf,
+  normalizationSchoolResults3nf
 ];

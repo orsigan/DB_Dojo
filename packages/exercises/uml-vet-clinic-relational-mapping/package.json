@@ -1,0 +1,26 @@
+{
+  "name": "@db-dojo/exercise-uml-vet-clinic-relational-mapping",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: translate a class diagram for pet owners and their pets into the relational model, graded on the drawn tables.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7"
+  }
+}

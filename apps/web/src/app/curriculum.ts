@@ -106,7 +106,51 @@ export const curriculum: Chapter[] = [
         exerciseIds: [
           'uml-library-class-diagram',
           'uml-orders-relational-mapping',
-          'normalization-orders-3nf'
+          'normalization-orders-3nf',
+
+          'uml-zoo-keeper-animals',
+          'uml-hotel-rooms',
+          'uml-sports-team-players',
+          'uml-person-passport',
+          'uml-cinema-relational-mapping',
+          'uml-vet-clinic-relational-mapping',
+          'uml-school-relational-mapping',
+          'normalization-course-signup-1nf',
+          'normalization-classifieds-contact-1nf',
+          'normalization-workshop-tools-1nf',
+
+          'uml-fleet-vehicle-generalization',
+          'uml-university-student-course',
+          'uml-restaurant-order-composition-chain',
+          'uml-clinic-isolation-room',
+          'uml-conference-relational-mapping',
+          'uml-company-hierarchy-relational-mapping',
+          'uml-repair-shop-relational-mapping',
+          'normalization-warehouse-stock-2nf',
+          'normalization-consulting-assignment-2nf',
+          'normalization-carpool-ride-2nf',
+
+          'uml-department-project-staffing',
+          'uml-hospital-staff-model',
+          'uml-airline-booking-association-class',
+          'uml-media-library-generalization',
+          'uml-cinema-screening-relational-mapping',
+          'uml-car-rental-fleet-relational-mapping',
+          'uml-supply-chain-relational-mapping',
+          'normalization-clinic-medication-3nf',
+          'normalization-realestate-listing-3nf',
+          'normalization-festival-lineup-3nf',
+
+          'uml-hospital-full-care-model',
+          'uml-university-course-prerequisites',
+          'uml-insurance-policy-model',
+          'uml-esports-tournament-model',
+          'uml-hospital-staff-relational-mapping',
+          'uml-logistics-transport-relational-mapping',
+          'uml-streaming-platform-relational-mapping',
+          'normalization-hotel-booking-3nf',
+          'normalization-carworkshop-invoice-3nf',
+          'normalization-school-results-3nf'
         ],
         children: []
       }

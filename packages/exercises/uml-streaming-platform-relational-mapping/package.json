@@ -1,0 +1,26 @@
+{
+  "name": "@db-dojo/exercise-uml-streaming-platform-relational-mapping",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: map a class diagram with generalization and a two-attribute association class for a streaming platform into the relational model.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7"
+  }
+}

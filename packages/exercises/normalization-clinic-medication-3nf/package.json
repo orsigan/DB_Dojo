@@ -1,0 +1,26 @@
+{
+  "name": "@db-dojo/exercise-normalization-clinic-medication-3nf",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Exercise: decompose a clinic appointment table into third normal form, graded on the drawn tables.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@db-dojo/core": "*",
+    "@db-dojo/exercise-kit": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7"
+  }
+}

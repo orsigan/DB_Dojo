@@ -21,7 +21,9 @@ export function subscribeToProgressEvents(listener: Listener): () => void {
   return () => listeners.delete(listener);
 }
 
-export async function withSuppressedProgressEvents<Value>(fn: () => Promise<Value>): Promise<Value> {
+export async function withSuppressedProgressEvents<Value>(
+  fn: () => Promise<Value>
+): Promise<Value> {
   suppressed = true;
   try {
     return await fn();

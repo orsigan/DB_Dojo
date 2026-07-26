@@ -93,7 +93,9 @@ export function useShellTabs(exercise: Exercise): ShellTabs {
   };
 
   const selectPane = (pane: 'left' | 'right', id: string) => {
-    setState((prev) => (pane === 'left' ? { ...prev, leftTabId: id } : { ...prev, rightTabId: id }));
+    setState((prev) =>
+      pane === 'left' ? { ...prev, leftTabId: id } : { ...prev, rightTabId: id }
+    );
   };
 
   const toggleSplit = () => {
