@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { exerciseModules } from '../app/exercise-registry';
 import { useLanguage } from '../app/i18n/use-language';
 import { useTranslation } from '../app/i18n/use-translation';
@@ -11,6 +11,7 @@ import { buildCrumbs } from './build-crumbs';
 import { CommandPalette } from './CommandPalette';
 import { LocationBar } from './LocationBar';
 import { Sidebar } from './Sidebar';
+import { getScrollPosition, saveScrollPosition } from './scroll-position-store';
 import { MAX_SIDEBAR_WIDTH, MIN_SIDEBAR_WIDTH, useSidebarResize } from './use-sidebar-resize';
 
 export type { Crumb } from './build-crumbs';
@@ -29,6 +30,28 @@ export function AppShell() {
   );
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  const contentRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const node = contentRef.current;
+    if (!node) {
+      return;
+    }
+    const handleScroll = () => {
+      saveScrollPosition(window.location.pathname, node.scrollTop);
+    };
+    node.addEventListener('scroll', handleScroll, { passive: true });
+    return () => node.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: view triggers restore on navigation, path read via window.location
+  useLayoutEffect(() => {
+    const node = contentRef.current;
+    if (!node) {
+      return;
+    }
+    node.scrollTop = getScrollPosition(window.location.pathname);
+  }, [view]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -114,7 +137,7 @@ export function AppShell() {
           onShortcutsOpenChange={setShortcutsOpen}
         />
 
-        <main className="app-content">
+        <main className="app-content" ref={contentRef}>
           {activeMode && <activeMode.Component view={view} navigate={navigate} />}
         </main>
       </div>
